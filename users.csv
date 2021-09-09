@@ -1,0 +1,5 @@
+userId,name,city,locations
+p1,Joe,Paris,"['0001', '0002', '0008']"
+p2,Jenny,London,"['0003', '0004']"
+p3,Jack,London,"['0003', '0005']"
+p4,Jill,Berlin,"['0006', '0007']"
