@@ -11,7 +11,7 @@ api = Api(app)
 class Users(Resource):
     def get(self):
         # read local CSV
-        data = pd.read_csv("/home/ullas/Downloads/users.csv")
+        data = pd.read_csv("../users.csv")
 
         # convert dataframe to dict
         data = data.to_dict()
@@ -33,7 +33,7 @@ class Users(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/users.csv")
+        data = pd.read_csv("../users.csv")
 
         if args["userId"] in list(data["userId"]):
             return {"message": f"'{args['userId']}' already exists."}, 409
@@ -52,7 +52,7 @@ class Users(Resource):
             data = data.append(new_data, ignore_index=True)
 
             # save back to CSV
-            data.to_csv("/home/ullas/Downloads/users.csv", index=False)
+            data.to_csv("../users.csv", index=False)
 
             # return data with 200 OK
             return {"data": data.to_dict()}, 200
@@ -69,7 +69,7 @@ class Users(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/users.csv")
+        data = pd.read_csv("../users.csv")
 
         if args["userId"] in list(data["userId"]):
             # evaluate strings of lists to lists !!! never put something like this in prod
@@ -84,7 +84,7 @@ class Users(Resource):
             )
 
             # save back to CSV
-            data.to_csv("/home/ullas/Downloads/users.csv", index=False)
+            data.to_csv("../users.csv", index=False)
 
             # return data and 200 OK
             return {"data": data.to_dict()}, 200
@@ -104,14 +104,14 @@ class Users(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/users.csv")
+        data = pd.read_csv("../users.csv")
 
         if args["userId"] in list(data["userId"]):
             # remove data entry matching given userId
             data = data[data["userId"] != args["userId"]]
 
             # save back to CSV
-            data.to_csv("/home/ullas/Downloads/users.csv", index=False)
+            data.to_csv("../users.csv", index=False)
 
             # return data and 200 OK
             return {"data": data.to_dict()}, 200
@@ -123,7 +123,7 @@ class Users(Resource):
 class Locations(Resource):
     def get(self):
         # read local CSV
-        data = pd.read_csv("/home/ullas/Downloads/locations.csv")
+        data = pd.read_csv("../locations.csv")
 
         # return data dict and 200 OK
         return {"data": data.to_dict()}, 200
@@ -141,7 +141,7 @@ class Locations(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/locations.csv")
+        data = pd.read_csv("../locations.csv")
 
         # check if location already exists
         if args["locationId"] in list(data["locationId"]):
@@ -162,7 +162,7 @@ class Locations(Resource):
             data = data.append(new_data, ignore_index=True)
 
             # save back to CSV
-            data.to_csv("/home/ullas/Downloads/locations.csv", index=False)
+            data.to_csv("../locations.csv", index=False)
 
             # return data with 200 OK
             return {"data": data.to_dict()}, 200
@@ -180,7 +180,7 @@ class Locations(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/locations.csv")
+        data = pd.read_csv("../locations.csv")
 
         # check that the location exists
         if args["locationId"] in list(data["locationId"]):
@@ -198,7 +198,7 @@ class Locations(Resource):
             data[data["locationId"] == args["locationId"]] = user_data
 
             # now save updated data
-            data.to_csv("/home/ullas/Downloads/locations.csv", index=False)
+            data.to_csv("../locations.csv", index=False)
 
             # return data and 200 OK
             return {"data": data.to_dict()}, 200
@@ -218,7 +218,7 @@ class Locations(Resource):
         args = parser.parse_args()
 
         # read our CSV
-        data = pd.read_csv("/home/ullas/Downloads/locations.csv")
+        data = pd.read_csv("../locations.csv")
 
         # check that the locationId exists
         if args["locationId"] in list(data["locationId"]):
@@ -226,7 +226,7 @@ class Locations(Resource):
             data = data[data["locationId"] != args["locationId"]]
 
             # save the data
-            data.to_csv("/home/ullas/Downloads/locations.csv", index=False)
+            data.to_csv("../locations.csv", index=False)
 
             # return data and 200 OK
             return {"data": data.to_dict()}, 200
